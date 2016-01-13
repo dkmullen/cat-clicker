@@ -15,7 +15,22 @@ var loadPage = function() {
 	 */
 	var randNum = function(n) {
 		return Math.floor(Math.random() * n);
-	};	
+	};
+
+	function Cat(name, pic, counter) {
+		this.name = name;
+		this.pic = pic;
+		this.counter = counter;
+	}
+	
+	Cat.prototype.update = function() {
+		counter += 1;
+		document.getElementById("counter").innerHTML = "Counter: " + counter;
+	};
+	
+	var newCat = function() {
+		
+	};
 	
 	/** Picks a random cat to display on page load. */
 	var displayThisCat = myCats[randNum(5)];
@@ -75,13 +90,4 @@ Removed an unnecessary variable in the for loop.
 Added an img ID to the displayCat function.
 Added an event listener to the current cat pic.
 	
-*/
-
-/**
- * Model View Octopus
- * Model - the data list at the top of this doc
- * View - Two of them; The clickable list of cats (which is rendered once),
- * and the Cat name, pic and counter, which gets refreshed often.
- * Octupus - initializes the model on load; tells all views to render; and tracks
- * clicks, & calls for a counter update and redraw.
 */
