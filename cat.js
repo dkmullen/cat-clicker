@@ -1,5 +1,6 @@
 var loadPage = function() {
-	
+
+/** Model */	
 	var myCats = [
 		{name: "BJ", pic: "pix/bj.jpg", counter: 0},
 		{name: "Kiri", pic: "pix/kiri.jpg", counter: 0},
@@ -7,7 +8,62 @@ var loadPage = function() {
 		{name: "Thor", pic: "pix/thor.jpg", counter: 0},
 		{name: "Unknown", pic: "pix/unknown.jpg", counter: 0}
 	];
+	
 
+/** Octupus */
+	/** 
+	 *  Makes the menu of cats
+	 *  @function makeMenu
+	 */
+	var makeMenu = function() {
+		/** Pulls myCats.length out of the loop for better performance. */
+		var myCatsLen = myCats.length;
+		
+		/** Loops thru myCats creating a DOM element (a menu) including each cat.
+		 *  Adds an event listener w/c stores the clicked item in a closure,
+		 *  and calls displayCat to display the selected item on the page.
+	 	 */
+		for (var i = 0; i < myCatsLen; i++) {
+			var catNum = myCats[i];
+			
+			var node = document.createElement("BUTTON");
+			node.id = i;
+			var textnode = document.createTextNode(myCats[i].name);
+			node.appendChild(textnode);
+			document.getElementById("menu").appendChild(node);
+			
+			node.addEventListener('click', (function(catCopy) {
+				return function() {
+					displayCat(catCopy);
+					displayCounter(catCopy);
+				};
+			})(catNum));
+		};
+	};
+	
+	/** 
+	 *  Displays a random cat on page load and a selected cat when
+	 *  called by the event listener.
+	 *  @function displayCat
+	 */
+	var displayCat = function(n) {
+		document.getElementById("cat_name").innerHTML = n.name;
+		document.getElementById("cat_pic").innerHTML = '<img id =' + n.name + ' src="' + n.pic + '">';
+		/** Sets n as a global variable currentCat to be used to track clicks 
+		 *  on the cat currently being displayed.
+		*/
+		currentCat = n;
+	};
+
+	/** 
+	 *  Displays the counter of the above on page load and a selected one when
+	 *  called by the event listener.
+	 *  @function displayCounter
+	 */	
+	var displayCounter = function(n) {
+		document.getElementById("counter").innerHTML = "Counter: " + n.counter;
+	};
+	
 	/** 
 	 * A helper function to calculate random numbers between 0
 	 * (inclusive) and n (exclusive).
@@ -15,73 +71,31 @@ var loadPage = function() {
 	 */
 	var randNum = function(n) {
 		return Math.floor(Math.random() * n);
-	};	
+	};
 	
 	/** Picks a random cat to display on page load. */
 	var displayThisCat = myCats[randNum(5)];
 
-	/** Pulls myCats.length out of the loop for better performance. */
-	var myCatsLen = myCats.length;
-	
-	/** Loops thru myCats creating a DOM element (a menu) including each cat.
-	 *  Adds an event listener w/c stores the clicked item in a closure,
-	 *  and calls displayCat to display the selected item on the page.
-	*/
-	for (var i = 0; i < myCatsLen; i++) {
-		var catNum = myCats[i];
-		
-		var node = document.createElement("BUTTON");
-		node.id = i;
-		var textnode = document.createTextNode(myCats[i].name);
-		node.appendChild(textnode);
-		document.getElementById("menu").appendChild(node);
-		
-		node.addEventListener('click', (function(catCopy) {
-			return function() {
-				displayCat(catCopy);
-			};
-		})(catNum));
-	};	
-	
-	/** 
-	 *  Displays a random cat on page load and a selected cat when
-	 *  called by the event listener.
-	 *  @function displayCat
-	*/
-	var displayCat = function(n) {
-		document.getElementById("cat_name").innerHTML = n.name;
-		document.getElementById("cat_pic").innerHTML = '<img id =' + n.name + ' src="' + n.pic + '">';
-		document.getElementById("counter").innerHTML = "Counter: " + n.counter;
-	};
-
-	/** calls displayCat on page load. */
-	displayCat(displayThisCat);
-	
 	var elem = document.getElementById("cat_pic");
 	elem.addEventListener('click', (function(picCopy) {
 		return function() {
-			console.log(picCopy);
-			//document.getElementById("counter").innerHTML = "Counter: " + int(counter); 
+			/* Increments count of curently displayed cat, updates it 
+			 * in the myCats list, updates the counter display;
+			 */
+			currentCat.counter++;
+			displayCounter(currentCat);
 		};
-	})(elem));
+	})(elem));	
+
+
+/** Display */
+	/** calls makeMenu on page load */
+	makeMenu();
+	
+	/** calls displayCat and displayCounter on page load. */
+	displayCat(displayThisCat);
+	displayCounter(displayThisCat);
 }; 
 
 /** Calls loadPage on page load. */
 loadPage();	
-
-
-/*
-Removed an unnecessary variable in the for loop.
-Added an img ID to the displayCat function.
-Added an event listener to the current cat pic.
-	
-*/
-
-/**
- * Model View Octopus
- * Model - the data list at the top of this doc
- * View - Two of them; The clickable list of cats (which is rendered once),
- * and the Cat name, pic and counter, which gets refreshed often.
- * Octupus - initializes the model on load; tells all views to render; and tracks
- * clicks, & calls for a counter update and redraw.
-*/
