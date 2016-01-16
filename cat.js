@@ -10,7 +10,7 @@ var loadPage = function() {
 	];
 	
 
-/** Octupus */
+/** Octopus */
 	/** 
 	 *  Makes the menu of cats
 	 *  @function makeMenu
@@ -79,14 +79,36 @@ var loadPage = function() {
 	var elem = document.getElementById("cat_pic");
 	elem.addEventListener('click', (function(picCopy) {
 		return function() {
-			/* Increments count of curently displayed cat, updates it 
+			/* Increments count of currently displayed cat, updates it 
 			 * in the myCats list, updates the counter display;
 			 */
 			currentCat.counter++;
 			displayCounter(currentCat);
 		};
 	})(elem));	
-
+	
+	var displayAdminArea = function() {
+		document.getElementById('admin-area').innerHTML = 
+			'<form>Name:<input type="text" name="name" value=' + currentCat.name + '><br>' +
+            'Image url:<input type="text" name="pic" value=' + currentCat.pic + '><br>' +
+			'Counter:<input type="text" name="counter" value=' + currentCat.counter + '><br><br>' +
+			'<button id="cancel">Cancel</button>' +
+			'<input type="submit" value="Submit"></form>';
+	};
+	
+	var adminButton = document.getElementById('admin');
+	adminButton.addEventListener('click', function() {
+		displayAdminArea();
+	});
+	
+	hideAdmin = function() {
+		//document.getElementById('admin-area').style.display = "none";
+		console.log("Hello");
+	};
+	
+	updateCats = function() {
+		console.log("Hello");
+	};
 
 /** Display */
 	/** calls makeMenu on page load */
