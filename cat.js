@@ -122,12 +122,30 @@ var adminView = {
 		var currentCat = octopus.getCurrentCat();
 		this.adminElem.innerHTML = 
 			'<div id="admin-box">' +
-			'Name:<input type="text" name="name" value="' + currentCat.name + '"><br>' +
-			'Img URL:<input type="text" name="pic" value="' + currentCat.pic + '"><br>' +
-			'Counter:<input type="text" name="counter" value="' + currentCat.counter + '"><br><br>' +
-			'<button id="cancel">Cancel</button>' +
-			'<button id="save">Save</button>' +
+			'Name:<input type="text" id="name" value="' + currentCat.name + '"><br>' +
+			'Img URL:<input type="text" id="pic" value="' + currentCat.pic + '"><br>' +
+			'Counter:<input type="text" id="counter-box" value="' + currentCat.counter + '"><br><br>' +
+			'<button id="cancel" onclick="adminView.hideAdmin()">Cancel</button>' +
+			'<button id="save" onclick="adminView.saveAdmin()">Save</button>' +
 			'</div>';
+			
+	},
+	
+	/** A @function to hide the admin area when cancel is clicked */
+	hideAdmin: function() {
+		document.getElementById('admin-box').style.display = "none";
+	},
+	
+	/** A @function to update the cat values based on user input
+	  * Only changes the display, not the variables. Hides the admin panel */
+	saveAdmin: function() {
+		var x = document.getElementById('name').value;
+		var y = document.getElementById('pic').value;
+		var z = document.getElementById('counter-box').value;
+		document.getElementById('cat_name').innerHTML = x;
+		document.getElementById('cat_pic').src = y;
+		document.getElementById('counter').innerHTML = z;
+		adminView.hideAdmin();
 	}
 };
 
