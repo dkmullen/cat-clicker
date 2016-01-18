@@ -3,11 +3,11 @@
 var model = {
 	currentCat: null,
 	myCats: [
-		{name: "BJ", pic: "pix/bj.jpg", counter: 0},
-		{name: "Kiri", pic: "pix/kiri.jpg", counter: 0},
-		{name: "Smudge", pic: "pix/smudge.jpg", counter: 0},
-		{name: "Thor", pic: "pix/thor.jpg", counter: 0},
-		{name: "Unknown", pic: "pix/unknown.jpg", counter: 0}
+		{name: "BJ", nickname: "Boo Boo", pic: "pix/bj.jpg", counter: 0},
+		{name: "Kiri", nickname: "Wee Wee", pic: "pix/kiri.jpg", counter: 0},
+		{name: "Smudge", nickname: "Jayne", pic: "pix/smudge.jpg", counter: 0},
+		{name: "Thor", nickname: "Thunder", pic: "pix/thor.jpg", counter: 0},
+		{name: "Unknown", nickname: "Jerry", pic: "pix/unknown.jpg", counter: 0}
 	]
 };	
 
