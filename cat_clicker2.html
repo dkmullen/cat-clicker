@@ -41,10 +41,12 @@
 		<h2>Choose a cat:</h2>
 		<div id="menu"></div>
 
-		<div id="cat">
-			<h2 id="cat_name"></h2>
-			<img id="cat_pic" src="">	
-			<div id="counter"></div>
+		<div id="cat" data-bind="with: currentCat()">
+			<h2 id="cat_name" data-bind="text: fullName"></h2>
+			<h4 id="title" data-bind="text: title"></h4>
+			<img id="cat_pic" data-bind="click: $parent.incrementCounter,
+			attr: {src: pic}">	
+			<div id="counter" data-bind="text: counter"></div>
 		</div>
 		
 		<button id="admin-button">Admin</button>
@@ -52,7 +54,8 @@
 
 	<div id="admin-area"></div>
 	
-	<script type='text/javascript' src="js/cat.js"></script>
+	<script type='text/javascript' src='js/knockout-3.4.0.js'></script>
+	<script type='text/javascript' src="js/cat2.js"></script>
 
 
 
