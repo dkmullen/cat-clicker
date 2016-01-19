@@ -6,12 +6,11 @@ var myCats = [
 	{name: "Unknown", nickname: "Jerry", pic: "pix/unknown.jpg", counter: 0}
 ];
 
-var Cat = function() {
-	var randNum = Math.floor(Math.random() * myCats.length)
-	this.name = ko.observable(myCats[randNum].name);
-	this.nickname = ko.observable(myCats[randNum].nickname);
-	this.pic = ko.observable(myCats[randNum].pic);
-	this.counter = ko.observable(myCats[randNum].counter);
+var Cat = function(data) {
+	this.name = ko.observable(data.name);
+	this.nickname = ko.observable(data.nickname);
+	this.pic = ko.observable(data.pic);
+	this.counter = ko.observable(data.counter);
 	
 	this.fullName = ko.computed(function() {
 		return this.name() + " (" + this.nickname() + ")";
@@ -33,13 +32,23 @@ var Cat = function() {
 	}, this);	
 }
 
-
 var ViewModel = function() {
+	var self = this;
+	var randNum = Math.floor(Math.random() * myCats.length)
+	this.catList = ko.observableArray([]);
 	
-	this.currentCat = ko.observable( new Cat() );
+	myCats.forEach(function(catItem){
+		self.catList.push( new Cat(catItem) );
+	});
+	
+	this.currentCat = ko.observable( this.catList()[randNum] );
 	
 	this.incrementCounter = function() {
 		this.counter(this.counter() + 1);
+	};
+	
+	this.setCat = function(clickedCat) {
+		self.currentCat(clickedCat)
 	};
 }
 
