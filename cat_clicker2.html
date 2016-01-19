@@ -56,15 +56,21 @@
 			<div id="counter" data-bind="text: counter"></div>
 		</div>
 		
-		<button id="admin-button">Admin</button>
+		<button id="admin-button" onclick="">Admin</button>
 	</div>
 
-	<div id="admin-area"></div>
+	<div id="admin-area">
+		<div id="admin-box" data-bind = "visible: showAdminBox">
+			Name:<input type="text" id="name" value=""><br>
+			Img URL:<input type="text" id="pic" value=""><br>
+			Counter:<input type="text" id="counter-box" value=""><br><br>
+			<button id="cancel" onclick="">Cancel</button>
+			<button id="save" onclick="">Save</button>
+		</div>
+	</div>
 	
 	<script type='text/javascript' src='js/knockout-3.4.0.js'></script>
 	<script type='text/javascript' src="js/cat2.js"></script>
-
-
-
+	
 </body>
 </html>

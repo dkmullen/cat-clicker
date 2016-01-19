@@ -50,6 +50,8 @@ var ViewModel = function() {
 	this.setCat = function(clickedCat) {
 		self.currentCat(clickedCat)
 	};
-}
+	
+	this.showAdminBox = ko.observable(true);
+};
 
 ko.applyBindings(new ViewModel())
