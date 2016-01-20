@@ -3,40 +3,8 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
     <title>Cat Clicker</title>
-	
-	<style>
-		body {
-			text-align: center;
-			max-width: 400px;
-			font-family: sans-serif;
-			margin: 0 auto;
-		}
-		#container {
-			background-color: #f2f2f2;
-			padding: 5px 0 10px 0;
-		}
-		#menu ul {
-			padding: 0;
-		}
-		#menu li {
-			list-style-type: none;
-			margin: 0;
-			padding: 0 5px 0 5px;
-			display: inline;
-		}
-		#cat {
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		#admin-box {
-			background-color: #CCCCCC;
-			padding: 10px 0 10px 0;
-		}
-		input {
-			margin: 0 0 5px 5px;
-		}
-	</style>
 </head>
 
 <body>
@@ -51,7 +19,7 @@
 		<div id="cat" data-bind="with: currentCat()">
 			<h2 id="cat_name" data-bind="text: fullName"></h2>
 			<h4 id="title" data-bind="text: title"></h4>
-			<img id="cat_pic" data-bind="click: $parent.incrementCounter,
+			<img id="cat_pic" alt="cute cat" data-bind="click: $parent.incrementCounter,
 			attr: {src: pic}">	
 			<div id="counter" data-bind="text: counter"></div>
 		</div>
@@ -61,9 +29,11 @@
 
 	<div id="admin-area">
 		<div id="admin-box" data-bind = "visible: showAdminBox">
-			Name:<input type="text" id="name" value=""><br>
-			Img URL:<input type="text" id="pic" value=""><br>
-			Counter:<input type="text" id="counter-box" value=""><br><br>
+			<ul>
+				<li>Name:<input type="text" id="name" value=""></li>
+				<li>Img URL:<input type="text" id="pic" value=""></li>
+				<li>Counter:<input type="text" id="counter-box" value=""></li>
+			</ul>
 			<button id="cancel" onclick="">Cancel</button>
 			<button id="save" onclick="">Save</button>
 		</div>
@@ -71,6 +41,5 @@
 	
 	<script type='text/javascript' src='js/knockout-3.4.0.js'></script>
 	<script type='text/javascript' src="js/cat2.js"></script>
-	
 </body>
 </html>
