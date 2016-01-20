@@ -24,7 +24,7 @@
 			<div id="counter" data-bind="text: counter"></div>
 		</div>
 		
-		<button id="admin-button" onclick="">Admin</button>
+		<button id="admin-button" data-bind="click: adminButton">Admin</button>
 	</div>
 
 	<div id="admin-area">
@@ -34,7 +34,7 @@
 				<li>Img URL:<input type="text" id="pic" value=""></li>
 				<li>Counter:<input type="text" id="counter-box" value=""></li>
 			</ul>
-			<button id="cancel" onclick="">Cancel</button>
+			<button id="cancel" data-bind="click: cancelButton">Cancel</button>
 			<button id="save" onclick="">Save</button>
 		</div>
 	</div>
